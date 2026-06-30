@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AVORA — Skincare at the speed of your life</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@400;500&display=swap');
+html{scroll-behavior:smooth}
+body{margin:0;background:#0A1B36;display:flex;justify-content:center}
+.avora{--paper:#DFE9F5;--paper2:#CBDBED;--ink:#0A1B36;--soft:#3C4F75;--line:#A6BCD6;--acc:#1E50FF;--ice:#7FA8DE;--warm:#F3EEE2;--red:#D8453B;--gutter:clamp(22px,6vw,200px);position:relative;width:100%;max-width:none;background:var(--paper);color:var(--ink);font-family:'Space Grotesk',sans-serif;overflow:hidden;line-height:1.55}
+.avora *{box-sizing:border-box}
+.avora .srt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.avora .grain{position:absolute;inset:0;pointer-events:none;opacity:.05;z-index:20;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.avora .mono{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--soft)}
+.avora .nav{display:flex;align-items:center;justify-content:space-between;gap:12px 14px;flex-wrap:wrap;padding:14px var(--gutter);border-bottom:1.5px solid var(--ink);position:relative;z-index:5;background:var(--paper)}
+.avora .nav .logo{font-family:'Fraunces',serif;font-variation-settings:'WONK' 1;font-weight:600;font-size:20px;letter-spacing:.16em;cursor:pointer;color:var(--ink)}
+.avora .nav .links{display:flex;gap:clamp(12px,2.4vw,20px);align-items:center;flex-wrap:wrap}
+.avora .nav a.nl{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.12em;font-size:11px;color:var(--soft);text-decoration:none;cursor:pointer;padding-bottom:2px;border-bottom:1.5px solid transparent}
+.avora .nav a.nl:hover,.avora .nav a.nl.active{color:var(--ink);border-color:var(--acc)}
+.avora .nav .navcta{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:700;background:var(--ink);color:#fff;border:none;padding:11px 15px;border-radius:4px;cursor:pointer;transition:background .2s ease}
+.avora .nav .navcta:hover{background:var(--acc)}
+
+.avora #view-home .kick{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.22em;font-size:11px;color:var(--soft);margin:0 0 22px}
+.avora #view-home .hero{padding:clamp(30px,6vw,44px) var(--gutter) 30px;position:relative}
+.avora #view-home .hero h1{font-family:'Fraunces',serif;font-variation-settings:'SOFT' 60,'WONK' 1;font-weight:500;font-size:clamp(54px,12vw,92px);line-height:.86;letter-spacing:-.03em;margin:0}
+.avora #view-home .hero h1 em{font-style:italic;font-weight:400;position:relative;display:inline-block}
+.avora #view-home .ink-underline{position:absolute;left:-4px;bottom:6px;width:calc(100% + 12px);height:22px;overflow:visible}
+.avora #view-home .draw{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.3s cubic-bezier(.6,0,.2,1) forwards .5s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.avora #view-home .lede{font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:clamp(20px,4vw,23px);margin:26px 0 0;max-width:430px}
+.avora #view-home .body{font-size:15.5px;color:var(--soft);max-width:440px;margin:16px 0 0}
+.avora #view-home .body b{color:var(--ink);font-weight:500}
+.avora #view-home .actions{display:flex;align-items:center;gap:22px;margin-top:30px;flex-wrap:wrap}
+.avora .btn{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:700;background:var(--ink);color:#fff;border:none;padding:15px 22px;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:background .2s ease,transform .15s ease}
+.avora .btn:hover{background:var(--acc);transform:translateY(-1px)}
+.avora .btn .ar{transition:transform .2s ease}.avora .btn:hover .ar{transform:translateX(4px)}
+.avora #view-home .qlink{font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--acc);padding-bottom:2px;cursor:pointer}
+.avora #view-home .qlink:hover{color:var(--acc)}
+.avora #view-home .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,60px);align-items:center}
+.avora #view-home .herotext{min-width:0}
+.avora #view-home .heromedia{min-width:0}
+.avora #view-home .heroshot{display:block;width:100%;max-width:560px;margin:0 auto;border:1.5px solid var(--ink);border-radius:12px}
+.avora #view-home .hcap{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--soft);text-align:center;margin:14px 0 0}
+.avora #view-home .marquee{border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);overflow:hidden;background:var(--ink);padding:10px 0}
+.avora #view-home .track{display:flex;width:max-content;animation:slide 22s linear infinite}
+.avora #view-home .track span{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.26em;font-size:12px;color:#fff;display:inline-flex;align-items:center;padding:0 18px}
+.avora #view-home .track .dia{width:6px;height:6px;background:var(--acc);transform:rotate(45deg);margin:0 18px}
+@keyframes slide{to{transform:translateX(-50%)}}
+.avora #view-home .sec{padding:clamp(34px,6vw,46px) var(--gutter);border-bottom:1.5px solid var(--ink)}
+.avora #view-home .sechead{display:flex;align-items:baseline;gap:clamp(12px,3vw,16px);margin-bottom:26px}
+.avora #view-home .num{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(44px,9vw,64px);line-height:.8;color:transparent;-webkit-text-stroke:1.5px var(--soft);letter-spacing:-.04em;flex:none}
+.avora #view-home .sec h2{font-family:'Fraunces',serif;font-variation-settings:'SOFT' 50,'WONK' 1;font-weight:500;font-size:clamp(25px,5vw,32px);line-height:1.05;letter-spacing:-.02em;margin:0;max-width:420px}
+.avora #view-home .sec h2 .acc{color:var(--acc);font-style:italic}
+.avora #view-home .intro{font-size:15px;color:var(--soft);max-width:430px;margin:0 0 4px}
+.avora #view-home .spec{margin-top:8px;border-top:1px solid var(--line)}
+.avora #view-home .spec .row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+.avora #view-home .spec .k{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--soft)}
+.avora #view-home .spec .v{font-family:'Fraunces',serif;font-size:18px;font-weight:500;text-align:right}
+.avora #view-home .step{display:grid;grid-template-columns:62px 1fr;gap:20px;align-items:start;padding:18px 0;border-bottom:1px solid var(--line)}
+.avora #view-home .step:first-child{border-top:1px solid var(--line)}
+.avora #view-home .step .sn{font-family:'Fraunces',serif;font-style:italic;font-size:40px;color:var(--acc);line-height:1}
+.avora #view-home .step h3{font-family:'Fraunces',serif;font-weight:500;font-size:20px;margin:0 0 3px}
+.avora #view-home .step p{font-size:14px;color:var(--soft);margin:0}
+.avora #view-home .ingrid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);margin-top:8px}
+.avora #view-home .ig{padding:20px 0;border-bottom:1px solid var(--line)}
+.avora #view-home .ig:nth-child(odd){padding-right:24px;border-right:1px solid var(--line)}
+.avora #view-home .ig:nth-child(even){padding-left:24px}
+.avora #view-home .ig .fn{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.16em;font-size:10px;color:var(--acc);margin:0 0 6px}
+.avora #view-home .ig h3{font-family:'Fraunces',serif;font-weight:500;font-size:21px;margin:0 0 5px}
+.avora #view-home .ig p{font-size:13.5px;color:var(--soft);margin:0}
+.avora #view-home .free{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.avora #view-home .fp{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.1em;font-size:10px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 13px}
+.avora #view-home .vet{display:flex;gap:9px;align-items:flex-start;margin-top:20px;font-size:12.5px;color:var(--soft);max-width:500px}
+.avora #view-home .vet .vc{color:var(--acc);flex:none;margin-top:1px}
+.avora #view-home .vet a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--acc)}
+.avora #view-home .diff{background:var(--ink);color:#fff;padding:clamp(34px,6vw,44px) var(--gutter);text-align:center}
+.avora #view-home .diff .mono{color:var(--ice)}
+.avora #view-home .diff p{font-family:'Fraunces',serif;font-variation-settings:'SOFT' 60,'WONK' 1;font-weight:400;font-size:clamp(21px,4.6vw,28px);line-height:1.25;max-width:500px;margin:16px auto 0;letter-spacing:-.01em}
+.avora #view-home .diff .hot{color:var(--ice);font-style:italic}.avora #view-home .diff .cool{color:#9CC0FF;font-style:italic}
+.avora #view-home .simpl{padding:clamp(38px,7vw,50px) var(--gutter);text-align:center;border-bottom:1.5px solid var(--ink)}
+.avora #view-home .simpl .se{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.24em;font-size:11px;color:var(--acc);margin:0 0 16px}
+.avora #view-home .simpl h2{font-family:'Fraunces',serif;font-variation-settings:'SOFT' 50,'WONK' 1;font-weight:500;font-size:clamp(28px,6vw,40px);letter-spacing:-.02em;margin:0;line-height:1.02}
+.avora #view-home .simpl h2 .acc{color:var(--acc);font-style:italic}
+.avora #view-home .nono{display:flex;justify-content:center;margin:28px auto 0;max-width:430px;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden}
+.avora #view-home .nono .cell{flex:1;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.1em;font-size:clamp(10px,2.6vw,12px);font-weight:700;color:var(--ink);padding:14px 8px}
+.avora #view-home .nono .cell+.cell{border-left:1.5px solid var(--ink)}
+.avora #view-home .simpl .close{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(17px,3.6vw,20px);color:var(--soft);margin:22px auto 0;max-width:420px}
+.avora #view-home .who{background:var(--ink);color:#fff;border-top:1.5px solid var(--acc);padding:clamp(34px,6vw,46px) var(--gutter)}
+.avora #view-home .who .num{-webkit-text-stroke:1.5px #5E739A}
+.avora #view-home .who h2{color:#fff}.avora #view-home .who h2 .acc{color:#7FA8FF}
+.avora #view-home .index{margin-top:28px;border-top:1px solid #2A3C5C}
+.avora #view-home .ix{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:15px 0;border-bottom:1px solid #2A3C5C;transition:padding-left .2s ease}
+.avora #view-home .ix:hover{padding-left:10px}
+.avora #view-home .ix .who-n{font-family:'Fraunces',serif;font-size:21px;font-weight:500}
+.avora #view-home .ix:hover .who-n{color:#9CC0FF}
+.avora #view-home .ix .who-d{font-size:13px;color:#AEC2DE;text-align:right;max-width:300px}
+.avora #view-home .ix .mc{font-family:'Space Mono',monospace;font-size:11px;color:#8298BD;letter-spacing:.1em}
+.avora #view-home .reserve{padding:clamp(34px,6vw,46px) var(--gutter) clamp(34px,6vw,44px)}
+.avora #view-home .ticket{background:var(--paper2);border:2px solid var(--ink);border-radius:6px;padding:30px 28px;position:relative;max-width:520px;margin:0 auto}
+.avora #view-home .tmono{display:flex;justify-content:space-between;color:var(--soft)}
+.avora #view-home .ticket h2{font-family:'Fraunces',serif;font-variation-settings:'SOFT' 50,'WONK' 1;font-weight:500;font-size:clamp(26px,6vw,34px);line-height:1;letter-spacing:-.02em;margin:14px 0 8px}
+.avora #view-home .tsub{font-size:14px;color:var(--soft);margin:0;max-width:380px}
+.avora #view-home .perf{display:flex;align-items:center;margin:24px -29px}
+.avora #view-home .perf .hole{width:24px;height:24px;border-radius:50%;background:var(--paper);flex:none}
+.avora #view-home .perf .pl{flex:1;border-top:2px dashed var(--ink);height:0}
+.avora #view-home .reserve form{display:flex;border:2px solid var(--ink);border-radius:4px;overflow:hidden;background:#fff}
+.avora #view-home .reserve input{flex:1;min-width:0;border:none;background:transparent;padding:0 16px;height:50px;font-family:'Space Grotesk',sans-serif;font-size:15px;color:var(--ink);outline:none}
+.avora #view-home .reserve input::placeholder{color:#6E86AE}
+.avora #view-home .reserve form button{border:none;background:var(--ink);color:#fff;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:700;padding:0 22px;cursor:pointer;transition:background .2s ease}
+.avora #view-home .reserve form button:hover{background:var(--acc)}
+.avora #view-home .rfine{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:var(--soft);text-transform:uppercase;margin:14px 0 0;text-align:center}
+.avora #view-home .rstamp{display:none;text-align:center;padding:8px 0 2px}
+.avora .seal{display:inline-block;border:3px double var(--acc);color:var(--acc);font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.2em;font-weight:700;font-size:14px;padding:13px 22px;transform:rotate(-6deg);border-radius:6px}
+.avora .sno{font-family:'Fraunces',serif;font-size:22px;margin:18px 0 4px;font-weight:500}
+.avora .sd{font-size:13.5px;color:var(--soft);margin:0 auto;max-width:330px}
+
+.avora #view-product .crumb{display:flex;gap:8px;align-items:center;padding:14px var(--gutter);border-bottom:1px solid var(--line);font-size:12px;color:var(--soft);flex-wrap:wrap}
+.avora #view-product .crumb a{color:var(--soft);text-decoration:none;cursor:pointer}
+.avora #view-product .crumb .cur{color:var(--ink)}.avora #view-product .crumb .sep{color:var(--ice)}
+.avora #view-product .pdp{display:grid;grid-template-columns:minmax(240px,320px) 1fr;gap:clamp(22px,4vw,34px);padding:var(--gutter)}
+.avora #view-product .stage{position:relative;background:#DCE8F5;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:240px}
+.avora #view-product .prodimg{display:block;width:100%;height:auto}
+.avora #view-product .badge{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:7px;background:var(--warm);border:1px solid #E0D6BF;border-radius:4px;padding:7px 10px;max-width:200px}
+.avora #view-product .badge .bt{font-size:11px;line-height:1.25;color:var(--ink)}.avora #view-product .badge .bt b{font-weight:500}
+.avora #view-product .badge .bolt{color:var(--acc);flex:none}
+.avora #view-product .zoom{position:absolute;bottom:12px;right:12px;color:var(--soft)}
+.avora #view-product .cap{position:absolute;bottom:12px;left:12px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#fff;background:var(--ink);padding:6px 9px;border-radius:4px}
+.avora #view-product .thumbs{display:flex;gap:9px;margin-top:12px;flex-wrap:wrap}
+.avora #view-product .thumb{width:64px;height:64px;border:1.5px solid var(--line);border-radius:6px;background:var(--paper2);display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;transition:border-color .15s ease}
+.avora #view-product .thumb img{width:100%;height:100%;object-fit:cover}
+.avora #view-product .thumb.on{border-color:var(--ink)}.avora #view-product .thumb:hover{border-color:var(--soft)}
+.avora #view-product .eyebrow{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--soft);margin:0 0 8px}
+.avora #view-product h1{font-family:'Fraunces',serif;font-variation-settings:'SOFT' 50,'WONK' 1;font-weight:500;font-size:clamp(28px,6vw,40px);line-height:1.02;letter-spacing:-.02em;margin:0}
+.avora #view-product h1 .sz{font-weight:400;font-style:italic;color:var(--soft);font-size:clamp(19px,4vw,25px)}
+.avora #view-product .desc{font-size:14.5px;color:var(--soft);margin:12px 0 0;max-width:420px}
+.avora #view-product .rate{display:flex;align-items:center;gap:9px;margin:14px 0 0;flex-wrap:wrap}
+.avora #view-product .rate .score{font-weight:500;font-size:14px}
+.avora #view-product .rate .rc{font-size:13px;color:var(--soft)}
+.avora #view-product .rate .rc a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--acc);cursor:pointer}
+.avora #view-product .pricez{margin:20px 0 0;padding:18px 0 0;border-top:1px solid var(--line)}
+.avora #view-product .price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.avora #view-product .price .amt{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,7vw,42px);letter-spacing:-.02em;line-height:1}
+.avora #view-product .price .amtsub{font-size:13.5px;color:var(--soft);max-width:260px}
+.avora #view-product .mline{margin:10px 0 0}
+.avora #view-product .trust{display:flex;gap:8px;margin:16px 0 0;flex-wrap:wrap}
+.avora #view-product .pill{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 11px}
+.avora #view-product .shipbar{margin:18px 0 0;border:1.5px solid var(--ink);border-radius:5px;padding:13px 15px;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.1em;font-size:11px;text-align:center}
+.avora #view-product .rewards{display:flex;gap:10px;align-items:flex-start;margin:16px 0 0;font-size:13.5px;color:var(--soft)}
+.avora #view-product .rewards .st{color:var(--acc);flex:none;margin-top:1px}.avora #view-product .rewards b{color:var(--ink);font-weight:500}
+.avora #view-product .opts{margin:20px 0 0}
+.avora #view-product label.opt{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:6px;padding:13px 16px;cursor:pointer;margin-bottom:10px;transition:border-color .15s ease,background .15s ease}
+.avora #view-product label.opt:has(input:checked){border-color:var(--ink);background:#fff}
+.avora #view-product .opt input{position:absolute;opacity:0;width:0;height:0}
+.avora #view-product .opt .dot{width:18px;height:18px;border-radius:50%;border:2px solid #93A8C6;flex:none;position:relative}
+.avora #view-product .opt input:checked~.dot{border-color:var(--acc)}
+.avora #view-product .opt input:checked~.dot:after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--acc)}
+.avora #view-product .opt .ol{font-size:14.5px;font-weight:500}.avora #view-product .opt .od{font-size:12px;color:var(--soft)}
+.avora #view-product .opt .tag{margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);border:1px solid var(--acc);border-radius:999px;padding:4px 9px}
+.avora #view-product .refer{color:var(--red);font-size:13px;margin:2px 0 0;cursor:pointer;display:inline-block}.avora #view-product .refer:hover{text-decoration:underline}
+.avora #view-product .joinlabel{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.16em;font-size:11px;margin:22px 0 10px}
+.avora #view-product .fields{display:grid;gap:10px}
+.avora #view-product .field{border:1.5px solid var(--ink);border-radius:5px;background:#fff;display:flex;align-items:center;overflow:hidden}
+.avora #view-product .field .fl{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);padding-left:14px;flex:none}
+.avora #view-product .field input{flex:1;min-width:0;border:none;background:transparent;padding:14px;font-family:'Space Grotesk',sans-serif;font-size:15px;color:var(--ink);outline:none}
+.avora #view-product .field input::placeholder{color:#6E86AE}
+.avora #view-product .ctarow{display:flex;gap:10px;margin:14px 0 0}
+.avora #view-product .join{flex:1;background:var(--ink);color:#fff;border:none;border-radius:5px;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.16em;font-size:13px;font-weight:700;padding:18px;cursor:pointer;transition:background .2s ease}
+.avora #view-product .join:hover{background:var(--acc)}
+.avora #view-product .save{width:56px;border:1.5px solid var(--ink);border-radius:5px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink);transition:background .15s ease}
+.avora #view-product .save:hover{background:var(--paper2)}.avora #view-product .save.liked{color:var(--red)}
+.avora #view-product .pfine{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin:14px 0 0;text-align:center}
+.avora #view-product .pstamp{display:none;border:2px dashed var(--ink);border-radius:8px;padding:22px;text-align:center;margin-top:8px;background:var(--paper2)}
+.avora #view-product .vid{display:flex;justify-content:space-between;align-items:center;padding:18px var(--gutter);border-top:1px solid var(--line)}
+.avora #view-product .vid .vt{font-family:'Fraunces',serif;font-weight:500;font-size:19px}
+
+.avora .foot{background:var(--ink);color:#C7D6EA;border-top:2px solid var(--acc)}
+.avora .foot .ftop{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:26px;padding:clamp(30px,5vw,40px) var(--gutter)}
+.avora .foot .fb{font-family:'Fraunces',serif;font-variation-settings:'WONK' 1;font-weight:600;font-size:26px;letter-spacing:.16em;color:#fff;cursor:pointer;display:inline-block}
+.avora .foot .ftag{font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:#9FB6D8;margin:10px 0 16px;max-width:230px}
+.avora .foot .fcta{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:700;background:#fff;color:var(--ink);border:none;padding:12px 17px;border-radius:4px;cursor:pointer;transition:background .2s ease,color .2s ease}
+.avora .foot .fcta:hover{background:var(--acc);color:#fff}
+.avora .foot .fmono{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:#6E86AE;margin:16px 0 0}
+.avora .foot .fcol h4{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:#7E96BE;margin:0 0 14px}
+.avora .foot .fcol a{display:block;color:#C7D6EA;text-decoration:none;font-size:13.5px;padding:5px 0;cursor:pointer;transition:color .15s ease}
+.avora .foot .fcol a:hover{color:#fff}
+
+@media(max-width:860px){
+  .avora #view-home .hero{grid-template-columns:1fr;gap:30px}
+  .avora #view-home .heroshot{margin:6px auto 0}
+  .avora #view-product .pdp{grid-template-columns:1fr;gap:24px}
+  .avora #view-product .stage{min-height:260px}
+}
+@media(max-width:680px){
+  .avora #view-home .ingrid{grid-template-columns:1fr}
+  .avora #view-home .ig:nth-child(odd){padding-right:0;border-right:none}
+  .avora #view-home .ig:nth-child(even){padding-left:0}
+  .avora #view-home .ix .who-d{display:none}
+  .avora .foot .ftop{grid-template-columns:1fr 1fr}
+  .avora .foot .fbrand{grid-column:1 / -1}
+}
+@media(max-width:520px){
+  .avora .nav .links .nl{display:none}
+  .avora #view-home .step{grid-template-columns:40px 1fr;gap:14px}
+  .avora #view-home .step .sn{font-size:30px}
+  .avora .foot .ftop{grid-template-columns:1fr;gap:24px}
+  .avora #view-product .ctarow{flex-wrap:wrap}
+  .avora #view-product .join{flex-basis:100%}
+  .avora #view-product .save{width:100%}
+}
+</style>
+</head>
+<body>
+<div class="avora">
+<h2 class="srt">AVORA — an editorial skincare site where, instead of buying, you join the waitlist.</h2>
+
+<div class="grain"></div>
+<span id="av-top"></span>
+
+<div class="nav">
+  <span class="logo" onclick="avGo('home')">AVORA</span>
+  <div class="links">
+    <a class="nl" data-v="home" onclick="avGo('home','av-ritual')">The ritual</a>
+    <a class="nl" data-v="home" onclick="avGo('home','av-ingr')">What's inside</a>
+    <a class="nl" data-v="home" onclick="avGo('home','av-who')">Who it's for</a>
+    <a class="nl active" data-v="product" onclick="avGo('product')">Shop</a>
+    <button class="navcta" onclick="avGo('product');setTimeout(function(){document.getElementById('av-email').focus()},80)">Join the waitlist</button>
+  </div>
+</div>
+
+<div class="view" id="view-home">
+  <div class="hero">
+    <div class="herotext">
+    <p class="kick">↓ a five-second cold ritual</p>
+    <h1>Cold<br><em>open.<svg class="ink-underline" viewBox="0 0 220 24" fill="none" preserveAspectRatio="none"><path class="draw" pathLength="100" d="M4 16 C 50 8, 120 6, 170 12 C 196 15, 210 18, 216 14" stroke="#1E50FF" stroke-width="4" stroke-linecap="round"/></svg></em></h1>
+    <p class="lede">Skincare at the speed of your life.</p>
+    <p class="body">A reusable pod keeps our Cryo Wipes chilled and ready. One swipe <b>cleanses, hydrates, cools, and de-puffs</b> — and wakes your skin up before your coffee does. No dripping. No prep. No cleanup.</p>
+    <div class="actions">
+      <button class="btn" onclick="avGo('product')">Meet the pod <span class="ar">→</span></button>
+      <span class="qlink" onclick="avGo('home','av-ritual')">see the ritual</span>
+    </div>
+    </div>
+    <div class="heromedia">
+      <img class="heroshot" src="avora-pod.png" alt="AVORA cryo skincare wipe pod, open with a wipe drawn out">
+      <p class="hcap">the avora pod · serve cold</p>
+    </div>
+  </div>
+
+  <div class="marquee"><div class="track">
+    <span>serve cold</span><span class="dia"></span><span>no residue</span><span class="dia"></span><span>one swipe</span><span class="dia"></span><span>stay awake</span><span class="dia"></span>
+    <span>serve cold</span><span class="dia"></span><span>no residue</span><span class="dia"></span><span>one swipe</span><span class="dia"></span><span>stay awake</span><span class="dia"></span>
+  </div></div>
+
+  <div class="sec">
+    <div class="sechead"><span class="num">01</span><h2>The pod that keeps <span class="acc">cold</span> on tap.</h2></div>
+    <p class="intro">No motors, no mess — a beautifully simple object that lives on your counter and travels in your bag. Snap in a refill pack and the cold is always waiting.</p>
+    <div class="spec">
+      <div class="row"><span class="k">The object</span><span class="v">Reusable Avora pod</span></div>
+      <div class="row"><span class="k">The refill</span><span class="v">Snap-in Cryo Wipes</span></div>
+      <div class="row"><span class="k">The finish</span><span class="v">Clean, no residue</span></div>
+      <div class="row"><span class="k">The plan</span><span class="v">Refills on subscription</span></div>
+    </div>
+  </div>
+
+  <div class="sec" id="av-ritual">
+    <div class="sechead"><span class="num">02</span><h2>Three seconds, <span class="acc">start to finish.</span></h2></div>
+    <div class="step"><span class="sn">i</span><div><h3>Chill</h3><p>Wipes stay cold and ready inside the pod — no fridge run, no waiting.</p></div></div>
+    <div class="step"><span class="sn">ii</span><div><h3>Snap</h3><p>Click a fresh Cryo Wipe refill into place. One motion, fully loaded.</p></div></div>
+    <div class="step"><span class="sn">iii</span><div><h3>Swipe</h3><p>One cool pass and you're cleansed, calm, and wide awake.</p></div></div>
+  </div>
+
+  <div class="sec" id="av-ingr">
+    <div class="sechead"><span class="num">03</span><h2>Cold on the outside. <span class="acc">Skincare inside.</span></h2></div>
+    <p class="intro">Beneath the chill, four hero ingredients do the quiet work — chosen to cleanse, hydrate, and comfort every skin type.</p>
+    <div class="ingrid">
+      <div class="ig"><p class="fn">barrier</p><h3>Niacinamide</h3><p>Supports the skin barrier and improves the appearance of skin.</p></div>
+      <div class="ig"><p class="fn">soothe</p><h3>Panthenol</h3><p>Helps soothe and hydrate.</p></div>
+      <div class="ig"><p class="fn">moisture</p><h3>Hyaluronic acid</h3><p>Attracts moisture for a refreshed, hydrated feel.</p></div>
+      <div class="ig"><p class="fn">comfort</p><h3>Glycerin</h3><p>Helps prevent skin from feeling dry or tight.</p></div>
+    </div>
+    <div class="free">
+      <span class="fp">Fragrance-free</span><span class="fp">Alcohol-free</span><span class="fp">Menthol-free</span><span class="fp">No sticky residue</span>
+    </div>
+    <div class="vet">
+      <svg class="vc" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1 L14 3.5 V8 C14 11.5 11.5 13.8 8 15 C4.5 13.8 2 11.5 2 8 V3.5 Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M5.5 8 L7.2 9.7 L10.5 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Every hero ingredient is well-studied and consumer-safe — backed by peer-reviewed research indexed in the U.S. <a href="https://www.nlm.nih.gov" target="_blank" rel="noopener">National Library of Medicine</a>.</span>
+    </div>
+  </div>
+
+  <div class="diff">
+    <p class="mono">the difference</p>
+    <p>Ice rollers <span class="hot">drip.</span> Cold plunges <span class="hot">take time.</span> AVORA delivers an instant cooling reset in <span class="cool">one clean swipe</span> — anywhere, anytime, with no prep and no mess.</p>
+  </div>
+
+  <div class="simpl">
+    <p class="se">the promise</p>
+    <h2>Cold skincare, <span class="acc">simplified.</span></h2>
+    <div class="nono"><span class="cell">No dripping</span><span class="cell">No setup</span><span class="cell">No cleanup</span></div>
+    <p class="close">Just one cold swipe whenever your skin needs a refresh.</p>
+  </div>
+
+  <div class="who" id="av-who">
+    <div class="sechead"><span class="num">04</span><h2>Made for people who <span class="acc">refuse to slow down.</span></h2></div>
+    <div class="index">
+      <div class="ix"><span class="who-n">Students <span class="mc">/ a</span></span><span class="who-d">Snooze the alarm and still walk into the 8am looking awake.</span></div>
+      <div class="ix"><span class="who-n">Professionals <span class="mc">/ b</span></span><span class="who-d">Reset between back-to-backs and show up camera-ready.</span></div>
+      <div class="ix"><span class="who-n">Athletes <span class="mc">/ c</span></span><span class="who-d">Cool down and de-puff the second the session ends.</span></div>
+      <div class="ix"><span class="who-n">Travelers <span class="mc">/ d</span></span><span class="who-d">Beat the red-eye. Land fresh, with no liquids to spill.</span></div>
+      <div class="ix"><span class="who-n">Parents <span class="mc">/ e</span></span><span class="who-d">Five honest seconds for you, between everything for them.</span></div>
+      <div class="ix"><span class="who-n">Acne-prone skin <span class="mc">/ f</span></span><span class="who-d">Gentle, clean, and calming — built to fit into daily life.</span></div>
+    </div>
+  </div>
+
+  <div class="reserve">
+    <div class="ticket">
+      <div class="tmono"><span class="mono">admit one</span><span class="mono">early access</span></div>
+      <h2>Claim your place in line.</h2>
+      <p class="tsub">First to feel the cold. First to founder pricing, the launch drop, and refill perks. Or <span class="qlink" onclick="avGo('product')">reserve from the product page →</span></p>
+      <div class="perf"><span class="hole"></span><span class="pl"></span><span class="hole"></span></div>
+      <form id="rform" onsubmit="return avReserve(event)">
+        <input id="remail" type="email" placeholder="you@example.com" aria-label="Email" required>
+        <button type="submit">Reserve</button>
+      </form>
+      <p class="rfine">no spam · unsubscribe anytime · cold served first-come</p>
+      <div class="rstamp" id="rstamp"><span class="seal">Reserved</span><p class="sno" id="rno">No. 0000</p><p class="sd" id="rsd">You're in line.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="view" id="view-product" style="display:none">
+  <div class="crumb"><a onclick="avGo('home')">Home</a><span class="sep">/</span><a onclick="avGo('product')">Shop</a><span class="sep">/</span><a onclick="avGo('home')">AVORA</a><span class="sep">/</span><span class="cur">Avora Pod + Cryo Wipes</span></div>
+  <div class="pdp">
+    <div>
+      <div class="stage">
+        <div class="badge"><svg width="14" height="16" viewBox="0 0 16 18" class="bolt" aria-hidden="true"><path d="M10 1 L3 10 L8 10 L7 17 L14 7 L9 7 Z" fill="currentColor"/></svg><span class="bt"><b>Filling fast.</b> 214 joined the list in the last 48 hrs.</span></div>
+        <img class="prodimg" src="avora-pod.png" alt="AVORA cryo skincare wipe pod, open with a wipe drawn out">
+        <span class="cap">30 cryo wipes · serve cold</span>
+        <svg class="zoom" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M13 13 L18 18 M8.5 6 L8.5 11 M6 8.5 L11 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </div>
+      <div class="thumbs">
+        <div class="thumb on"><img src="avora-pod.png" alt="AVORA pod"></div>
+        <div class="thumb"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="6" width="20" height="16" rx="5" stroke="#0A1B36" stroke-width="1.3"/><path d="M4 14 L24 14" stroke="#7FA8DE" stroke-width="1.2"/></svg></div>
+        <div class="thumb"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 3 L13 23 M4 8 L22 18 M22 8 L4 18" stroke="#1E50FF" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+        <div class="thumb"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="13" r="9" stroke="#0A1B36" stroke-width="1.3"/><path d="M10 13 Q14 17 18 13" stroke="#0A1B36" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+      </div>
+    </div>
+    <div class="info">
+      <p class="eyebrow">AVORA</p>
+      <h1>Avora Pod + Cryo Wipes <span class="sz">(30 wipes)</span></h1>
+      <p class="desc">A cryo-cooled wipe ritual that cleanses, hydrates, cools, and visibly de-puffs — waking your skin up in one cold swipe. No dripping, no prep, no cleanup.</p>
+      <div class="rate">
+        <svg width="92" height="16" viewBox="0 0 92 16" aria-hidden="true"><g>
+          <path transform="translate(0 0)" d="M8 1 L9.7 5.6 L14.6 5.9 L10.8 9 L12.1 13.8 L8 11 L3.9 13.8 L5.2 9 L1.4 5.9 L6.3 5.6 Z" fill="#0A1B36"/>
+          <path transform="translate(18 0)" d="M8 1 L9.7 5.6 L14.6 5.9 L10.8 9 L12.1 13.8 L8 11 L3.9 13.8 L5.2 9 L1.4 5.9 L6.3 5.6 Z" fill="#0A1B36"/>
+          <path transform="translate(36 0)" d="M8 1 L9.7 5.6 L14.6 5.9 L10.8 9 L12.1 13.8 L8 11 L3.9 13.8 L5.2 9 L1.4 5.9 L6.3 5.6 Z" fill="#0A1B36"/>
+          <path transform="translate(54 0)" d="M8 1 L9.7 5.6 L14.6 5.9 L10.8 9 L12.1 13.8 L8 11 L3.9 13.8 L5.2 9 L1.4 5.9 L6.3 5.6 Z" fill="#0A1B36"/>
+          <path transform="translate(72 0)" d="M8 1 L9.7 5.6 L14.6 5.9 L10.8 9 L12.1 13.8 L8 11 L3.9 13.8 L5.2 9 L1.4 5.9 L6.3 5.6 Z" fill="#7FA8DE"/>
+        </g></svg>
+        <span class="score">4.9</span><span class="rc">· 312 early testers · <a>read the notes</a></span>
+      </div>
+      <div class="pricez">
+        <div class="price"><span class="amt">$0</span><span class="amtsub">to join — founder pricing is reserved for the list, revealed at launch.</span></div>
+        <p class="mono mline">first drop · fall 2026 · the list ships first</p>
+      </div>
+      <div class="trust"><span class="pill">ships cold-packed</span><span class="pill">30-day fresh</span><span class="pill">cancel anytime</span></div>
+      <div class="shipbar">code &nbsp;FIRST&nbsp; — the list unlocks the launch drop + founder pricing</div>
+      <div class="rewards"><svg class="st" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 L8 15 M1 8 L15 8 M3 3 L13 13 M13 3 L3 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><span>Waitlist members get <b>first access to the drop</b> and <b>5% off every refill</b>, for life. Lock it in below.</span></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="avtier" checked><span class="dot"></span><span><span class="ol">Notify me at launch</span><br><span class="od">First in line when the first run ships.</span></span></label>
+        <label class="opt"><input type="radio" name="avtier"><span class="dot"></span><span><span class="ol">VIP early access</span><br><span class="od">Skip ahead — ships before the public drop.</span></span><span class="tag">first 500</span></label>
+      </div>
+      <span class="refer" onclick="alert('Share link copied — every friend you refer moves you up the line.')">Or refer a friend to jump the line ↑</span>
+      <div id="pbuy">
+        <p class="joinlabel">Add your name to the list</p>
+        <div class="fields">
+          <div class="field"><span class="fl">Name</span><input id="pname" type="text" placeholder="First name" aria-label="First name"></div>
+          <div class="field"><span class="fl">Email</span><input id="av-email" type="email" placeholder="you@example.com" aria-label="Email" required></div>
+        </div>
+        <div class="ctarow">
+          <button class="join" onclick="avJoin()">Join the waitlist →</button>
+          <button class="save" aria-label="Save" onclick="this.classList.toggle('liked')"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 18 C3 12 2 6 6 4 C8.2 2.8 10.2 4.2 11 6 C11.8 4.2 13.8 2.8 16 4 C20 6 19 12 11 18 Z" fill="currentColor" stroke="#0A1B36" stroke-width="1.2"/></svg></button>
+        </div>
+        <p class="pfine">no spam · first-come, first-served · your spot is saved instantly</p>
+      </div>
+      <div class="pstamp" id="pstamp"><span class="seal">On the list</span><p class="sno" id="pno">No. 0000</p><p class="sd" id="psd">You're in line.</p></div>
+    </div>
+  </div>
+  <div class="vid"><span class="vt">The ritual</span><span class="mono">watch ⌄</span></div>
+</div>
+
+<div class="foot">
+  <div class="ftop">
+    <div class="fbrand">
+      <span class="fb" onclick="avGo('home')">AVORA</span>
+      <p class="ftag">Skincare at the speed of your life.</p>
+      <button class="fcta" onclick="avGo('product');setTimeout(function(){document.getElementById('av-email').focus()},80)">Join the waitlist →</button>
+      <p class="fmono">first drop · fall 2026</p>
+    </div>
+    <div class="fcol">
+      <h4>Explore</h4>
+      <a onclick="avGo('home','av-ritual')">The ritual</a>
+      <a onclick="avGo('home','av-ingr')">What's inside</a>
+      <a onclick="avGo('home','av-who')">Who it's for</a>
+      <a onclick="avGo('product')">Shop the pod</a>
+    </div>
+    <div class="fcol">
+      <h4>Connect</h4>
+      <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://tiktok.com" target="_blank" rel="noopener">TikTok</a>
+      <a href="mailto:hello@avora.com">hello@avora.com</a>
+      <a onclick="avGo('home','av-top')">Back to top ↑</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function avEaseScroll(toY,dur){
+  var docEl=document.scrollingElement||document.documentElement;
+  var startY=docEl.scrollTop||window.pageYOffset||0;
+  var max=Math.max(0,docEl.scrollHeight-docEl.clientHeight);
+  toY=Math.max(0,Math.min(toY,max));
+  var diff=toY-startY;
+  if(Math.abs(diff)<2){window.scrollTo(0,toY);return;}
+  var t0=null;
+  function frame(ts){
+    if(t0===null)t0=ts;
+    var p=Math.min(1,(ts-t0)/dur);
+    var e=p<0.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
+    window.scrollTo(0,startY+diff*e);
+    if(p<1)requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+function avOffsetTop(el){var y=0;while(el){y+=el.offsetTop;el=el.offsetParent;}return y;}
+function avScrollToEl(el){
+  if(!el)return;
+  var docEl=document.scrollingElement||document.documentElement;
+  if(docEl.scrollHeight>docEl.clientHeight+4){
+    avEaseScroll(avOffsetTop(el)-8,640);
+  }else{
+    try{el.scrollIntoView({behavior:'smooth',block:'start'});}catch(e){el.scrollIntoView();}
+  }
+}
+function avGo(view,anchor){
+  document.querySelectorAll('.avora .view').forEach(function(v){v.style.display='none'});
+  var t=document.getElementById('view-'+view); if(t)t.style.display='block';
+  document.querySelectorAll('.avora .nl').forEach(function(a){a.classList.toggle('active',a.dataset.v===view)});
+  var target=anchor?document.getElementById(anchor):document.getElementById('av-top');
+  requestAnimationFrame(function(){requestAnimationFrame(function(){avScrollToEl(target);});});
+}
+function avReserve(e){
+  e.preventDefault();
+  var email=document.getElementById('remail').value.trim();
+  var n=String(Math.floor(140+Math.random()*860)).padStart(4,'0');
+  document.getElementById('rno').textContent='No. '+n;
+  document.getElementById('rsd').textContent='Held for '+email+'. We’ll write the moment the first run ships.';
+  document.getElementById('rform').style.display='none';
+  document.querySelector('#view-home .perf').style.display='none';
+  document.querySelector('#view-home .rfine').style.display='none';
+  document.getElementById('rstamp').style.display='block';
+  return false;
+}
+function avJoin(){
+  var name=(document.getElementById('pname').value||'').trim();
+  var email=(document.getElementById('av-email').value||'').trim();
+  if(!email||email.indexOf('@')<1){document.getElementById('av-email').focus();return;}
+  var n=String(Math.floor(140+Math.random()*860)).padStart(4,'0');
+  document.getElementById('pno').textContent='No. '+n;
+  document.getElementById('psd').textContent=(name?name+', you':'You')+'’re in line. We’ll write to '+email+' the moment the first run ships — founder pricing locked.';
+  document.getElementById('pbuy').style.display='none';
+  document.getElementById('pstamp').style.display='block';
+}
+</script>
+</div>
+</body>
+</html>
